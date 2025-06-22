@@ -23,6 +23,12 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123')
         ]);
 
+        User::create([
+            'name' => 'Arya Azaya',
+            'email' => 'aryaazaya@gmail.com',
+            'password' => bcrypt('123')
+        ]);
+
         Post::create([
             'title' => 'Judul Pertama',
             'category_id' => 1,
@@ -46,7 +52,7 @@ class DatabaseSeeder extends Seeder
         Post::create([
             'title' => 'Judul Ketiga',
             'category_id' => 2,
-            'user_id' => 1,
+            'user_id' => 2,
             'author' => 'Arya Fadhila Azaya',
             'slug' => 'judul-ketiga',
             'excerpt' => 'Lorem ipsum dolor sit amet ketiga.',
@@ -56,7 +62,7 @@ class DatabaseSeeder extends Seeder
         Post::create([
             'title' => 'Judul Keempat',
             'category_id' => 2,
-            'user_id' => 1,
+            'user_id' => 2,
             'author' => 'Arya Fadhila Azaya',
             'slug' => 'judul-keempat',
             'excerpt' => 'Lorem ipsum dolor sit amet keempat.',
