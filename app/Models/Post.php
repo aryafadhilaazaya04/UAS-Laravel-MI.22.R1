@@ -21,6 +21,8 @@ class Post extends Model
         'updated_at'
     ];
 
+    protected $with = ['category', 'user'];
+
     // App\Models\Post::create([
     //     'title' => 'Judul Pertama',
     //     'category_id' => 1,
