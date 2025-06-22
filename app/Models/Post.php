@@ -24,7 +24,6 @@ class Post extends Model
     // App\Models\Post::create([
     //     'title' => 'Judul Pertama',
     //     'category_id' => 1,
-    //     'slug' => 'judul-pertama',
     //     'author' => 'Arya Fadhila Azaya',
     //     'slug' => 'judul-pertama',
     //     'excerpt' => 'Lorem ipsum dolor sit amet pertama.',
