@@ -11,6 +11,11 @@ class Category extends Model
 
     protected $guarded = ['id'];
 
+    // App\Models\Category::create([
+    //     'name' => 'Programming',
+    //     'slug' => 'programming',
+    // ]);
+
     public function posts()
     {
         return $this->hasMany(Post::class);
