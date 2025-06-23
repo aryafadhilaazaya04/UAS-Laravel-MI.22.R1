@@ -1,15 +1,23 @@
-.form-signin .form-floating:focus-within {
+.form-login .form-floating:focus-within {
   z-index: 2;
 }
 
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+.form-login input {
+  border-radius: 0.8rem;
 }
 
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.form-register input {
+  border-radius: 0.8rem;
+}
+
+.form-login {
+    border: 2px solid #bd2c2c;
+    border-radius: 1.6rem;
+    padding: 2.5rem;
+}
+
+.form-register {
+    border: 2px solid #bd2c2c;
+    border-radius: 1.6rem;
+    padding: 2.5rem;
 }
