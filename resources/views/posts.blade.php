@@ -7,7 +7,7 @@
     <div class="card mb-3">
         <img src="https://picsum.photos/seed/1070/720" class="card-img-top" alt="{{ $posts[0]->category->name }}" style="width: 100%; height: 150px; object-fit: cover; margin: 0 auto; display: block;">
         <div class="card-body text-center">
-            <h3 class="card-title">{{ $posts[0]->title }}</h3>
+            <h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->title }}</a></h3>
             <p>
                 <small class="text-muted">
                     By: <a href="/authors/{{ $posts[0]->user->username }}" class="text-decoration-none">{{ $posts[0]->user->name }}</a> in <a href="/categories/{{ $posts[0]->category->slug }}" class="text-decoration-none">{{ $posts[0]->category->name }}</a>
