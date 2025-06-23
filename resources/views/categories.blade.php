@@ -7,7 +7,7 @@
     <div class="row">
         @foreach ($categories as $category)
         <div class="col-md-4">
-            <a href="/categories/{{ $category->slug }}" class="text-decoration-none text-white category-hover">
+            <a href="/posts?category={{ $category->slug }}" class="text-decoration-none text-white category-hover">
             <style>
             .category-hover .card {
                 transition: transform 0.2s cubic-bezier(.4,2,.6,1);
