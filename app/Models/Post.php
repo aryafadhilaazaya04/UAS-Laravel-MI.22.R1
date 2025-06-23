@@ -39,10 +39,25 @@ class Post extends Model
         //           ->orWhere('body', 'like', '%' . $filters['search'] . '%');
         // }
 
-        $query->when($filters['search'] ?? false, function($query, $search) {
-            return $query->where('title', 'like', '%' . $search . '%')
-                         ->orWhere('body', 'like', '%' . $search . '%');
+        $query->when($filters['search'] ?? false, function($query, $search) use ($filters) {
+            // Jika filter category atau user juga aktif, pencarian tetap dalam scope filter tersebut
+            $query->where(function($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                      ->orWhere('body', 'like', '%' . $search . '%');
+            });
         });
+
+        $query->when($filters['category'] ?? false, function($query, $category) {
+            return $query->whereHas('category', function($query) use ($category) {
+                $query->where('slug', $category);
+            });
+        });
+
+        $query->when($filters['user'] ?? false, fn($query, $user) => 
+            $query->whereHas('user', fn($query) => 
+                $query->where('username', $user)
+            )
+        );
     }
 
     public function category()
