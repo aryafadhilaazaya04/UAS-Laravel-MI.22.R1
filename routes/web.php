@@ -1,10 +1,9 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Models\User;
-use App\Models\Post;
-use App\Models\Category;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('home', [
@@ -12,6 +11,8 @@ Route::get('/', function () {
         "active" => "home"
     ]);
 });
+
+Route::get('/login', [LoginController::class, 'index']);
 
 Route::get('/about', function () {
     return view('about', [
