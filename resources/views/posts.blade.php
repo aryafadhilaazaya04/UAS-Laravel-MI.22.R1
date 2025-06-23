@@ -27,6 +27,7 @@
         @foreach ($posts->skip(1) as $post)
         <div class="col-md-4 mb-3">
             <div class="card">
+                <div class="position-absolute px-2 py-1" style="background-color: rgba(0, 0, 0, 0.5);"><a href="/categories/{{ $post->category->slug }}" class="text-decoration-none text-white">{{ $post->category->name }}</a></div>
                 <img src="https://picsum.photos/200/300?{{ $post->category->name }}" class="card-img-top" alt="{{ $post->category->name }}" style="width: 100%; height: 150px; object-fit: cover; margin: 0 auto; display: block;">
                 <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
