@@ -5,7 +5,7 @@
 
 @if ($posts->count())
     <div class="card mb-3">
-        <img src="https://picsum.photos/seed/1070/720" class="card-img-top" alt="{{ $posts[0]->category->name }}" style="width: 100%; height: 150px; object-fit: cover; margin: 0 auto; display: block;">
+        <img src="https://picsum.photos/200/300?{{ $posts[0]->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}" style="width: 100%; height: 150px; object-fit: cover; margin: 0 auto; display: block;">
         <div class="card-body text-center">
             <h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->title }}</a></h3>
             <p>
@@ -22,15 +22,27 @@
     <p class="text-center fs-4">No post found.</p>
 @endif
 
-@foreach ($posts as $post)
-<article class="mb-3 border-bottom pb-3">
-    <h2>
-        <a href="/posts/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}</a>
-    </h2>
-    <p>By: <a href="/authors/{{ $post->user->username }}" class="text-decoration-none">{{ $post->user->name }}</a> in <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></p>
-    <p>{{ $post->excerpt }}</p>
-    <a href="/posts/{{ $post->slug }}" class="text-decoration-none">Read more...</a>
-</article>
-@endforeach
+<div class="container">
+    <div class="row">
+        @foreach ($posts->skip(1) as $post)
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="https://picsum.photos/200/300?{{ $post->category->name }}" class="card-img-top" alt="{{ $post->category->name }}" style="width: 100%; height: 150px; object-fit: cover; margin: 0 auto; display: block;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $post->title }}</h5>
+                    <p>
+                        <small class="text-muted">
+                            By: <a href="/authors/{{ $post->user->username }}" class="text-decoration-none">{{ $post->user->name }}</a>
+                            {{ $post->created_at->diffForHumans() }}
+                        </small>
+                    </p>
+                    <p class="card-text">{{ $post->excerpt }}</p>
+                    <a href="/posts/{{ $post->slug }}" class="btn btn-primary">Read more...</a>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
 
 @endsection
