@@ -14,15 +14,26 @@
             </div>
             @endif
             
-            <form>
+            <form action="/login" method="POST">
+                @csrf
                 <div class="form-floating mb-3">
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" />
+                    <input type="email" name="email" class="form-control @error('name')is-invalid @enderror" id="email" placeholder="Email" required value="{{ old('email') }}" autofocus/>
                     <label for="email">Email address</label>
+                    @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
+                    <input type="password" name="password" class="form-control @error('name')is-invalid @enderror" id="password" placeholder="Password" />
                     <label for="password">Password</label>
+                    @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <button class="btn btn-outline-danger w-100" type="submit" style="border-radius: 1rem;">Login</button>
