@@ -7,13 +7,13 @@
         <div class="d-flex flex-column flex-shrink-0 p-3">
             <ul class="nav mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex gap-2 active" href="#">
+                    <a class="nav-link d-flex gap-2 {{ Request::is('dashboard') ? 'active' : 'text-black' }}" href="/dashboard">
                         <i class="bi bi-house-fill"></i> Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex gap-2 active" href="#">
-                        <i class="bi bi-file-earmark"></i> My Post
+                    <a class="nav-link d-flex gap-2 {{ Request::is('dashboard/posts') ? 'active' : 'text-black' }}" href="/dashboard/posts">
+                        <i class="bi bi-file-text"></i> My Post
                     </a>
                 </li>
             </ul>
@@ -23,7 +23,7 @@
                     <form action="/logout" method="POST">
                         @csrf
                         <button class="nav-link d-flex gap-2 text-danger bg-transparent border-0" type="submit">
-                            <i class="bi bi-door-closed"></i> Logout
+                            <i class="bi bi-box-arrow-right"></i> Logout
                         </button>
                     </form>
                 </li>

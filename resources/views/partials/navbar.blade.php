@@ -26,12 +26,18 @@
                         Welcome back, {{ auth()->user()->name }}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="dashboard"><i class="bi bi-speedometer2"></i> My Dashboard</a></li>
+                        <li>
+                            <a class="dropdown-item text-primary d-flex align-items-center gap-2" href="/dashboard">
+                                <i class="bi bi-house-fill"></i> My Dashboard
+                            </a>
+                        </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <form action="/logout" method="POST">
                                 @csrf
-                                <button class="dropdown-item" type="submit"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                                <button class="dropdown-item text-danger d-flex align-items-center gap-2" type="submit">
+                                    <i class="bi bi-box-arrow-right"></i> Logout
+                                </button>
                             </form>
                         </li>
                     </ul>
