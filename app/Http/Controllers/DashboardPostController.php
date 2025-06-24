@@ -12,7 +12,13 @@ class DashboardPostController extends Controller
      */
     public function index()
     {
-        return view('dashboard.posts.index');
+        $user = \Illuminate\Support\Facades\Auth::user();
+        if (!$user) {
+            abort(403, 'Unauthorized');
+        }
+        return view('dashboard.posts.index', [
+            'posts' => Post::where('user_id', $user->id)->get()
+        ]);
     }
 
     /**
