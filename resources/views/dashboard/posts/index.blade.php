@@ -17,7 +17,7 @@
         </thead>
         <tbody>
             @foreach ($posts as $post)
-            <tr>
+            <tr style="white-space: nowrap;">
                 <td>{{ $loop->iteration }}</td>
                 <td class="text-break">{{ $post->title }}</td>
                 <td class="text-break">{{ $post->category->name }}</td>

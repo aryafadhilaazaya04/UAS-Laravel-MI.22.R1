@@ -17,7 +17,8 @@ class DashboardPostController extends Controller
             abort(403, 'Unauthorized');
         }
         return view('dashboard.posts.index', [
-            'posts' => Post::where('user_id', $user->id)->get()
+            'posts' => Post::where('user_id', $user->id)->get(),
+            'title' => 'My Posts'
         ]);
     }
 
@@ -43,7 +44,8 @@ class DashboardPostController extends Controller
     public function show(Post $post)
     {
         return view('dashboard.posts.show', [
-            'post' => $post
+            'post' => $post,
+            'title' => 'Post Details'
         ]);
     }
 
