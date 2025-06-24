@@ -29,5 +29,6 @@ class RegisterController extends Controller
             'email' => $validatedData['email'],
             'password' => bcrypt($validatedData['password'])
         ]);
+        return redirect('/login')->with('success', 'Registration successful! Please login');
     }
 }

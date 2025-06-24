@@ -5,6 +5,15 @@
     <div class="col-lg-5">
         <main class="form-login w-100 mt-5">
             <h1 class="h3 mb-3 fw-normal text-center mb-4">Login</h1>
+
+            <!-- Alert register berhasil -->
+            @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+            
             <form>
                 <div class="form-floating mb-3">
                     <input type="email" name="email" class="form-control" id="email" placeholder="Email" />
