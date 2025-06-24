@@ -27,6 +27,6 @@ class LoginController extends Controller
             return redirect()->intended('/dashboard')->with('success', 'Welcome, ' . Auth::user()->name . '!');
         }
 
-        return back()->with('loginError', 'Login failed! Please check your credentials.');
+        return back()->with('loginError', 'Login failed!');
     }
 }
