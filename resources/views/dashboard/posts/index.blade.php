@@ -22,7 +22,7 @@
                 <td class="text-break">{{ $post->title }}</td>
                 <td class="text-break">{{ $post->category->name }}</td>
                 <td>
-                    <a href="/dashboard/posts/{{ $post->id }}" class="btn btn-info btn-sm mb-1 mb-md-0"><i class="bi bi-eye"></i></a>
+                    <a href="/dashboard/posts/{{ $post->slug }}" class="btn btn-info btn-sm mb-1 mb-md-0"><i class="bi bi-eye"></i></a>
                     <a href="#" class="btn btn-warning btn-sm mb-1 mb-md-0"><i class="bi bi-pencil-square"></i></a>
                     <form action="#" method="POST" class="d-inline">
                         @csrf

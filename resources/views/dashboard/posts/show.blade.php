@@ -1,0 +1,23 @@
+@extends('dashboard.layouts.main')
+@section('content')
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">My Post</h1>
+</div>
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-lg-8">
+            <article class="mb-5">
+                <h2>{{ $post->title }}</h2>
+                <h6 class="opacity-50">{{ $post->created_at->diffForHumans() }}</h6>
+                <img src="https://picsum.photos/200/300?{{ $post->category->name }}" alt="{{ $post->category->name }}" class="img-fluid mb-3 mt-3" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                {!! $post->body !!}
+            </article>
+
+            <a href="/dashboard/posts" class="d-block">Back to Posts</a>
+        </div>
+    </div>
+</div>
+
+@endsection

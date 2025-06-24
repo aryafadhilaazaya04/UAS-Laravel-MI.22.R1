@@ -12,7 +12,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex gap-2 {{ Request::is('dashboard/posts') ? 'active' : 'text-black' }}" href="/dashboard/posts">
+                    <a class="nav-link d-flex gap-2 {{ Request::is('dashboard/posts*') ? 'active' : 'text-black' }}" href="/dashboard/posts">
                         <i class="bi bi-file-text"></i> My Post
                     </a>
                 </li>

@@ -28,6 +28,7 @@ Route::get('/dashboard', function() {
         'active' => 'dashboard'
     ]);
 })->middleware('auth');
+
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
 Route::get('/about', function () {
