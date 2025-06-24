@@ -5,7 +5,7 @@
     <div class="col-lg-5">
         <main class="form-register w-100 mt-2">
             <h1 class="h3 mb-3 fw-normal text-center mb-4">Register</h1>
-            <form>
+            <form action="/register" method="POST">
                 <div class="form-floating mb-3">
                     <input type="text" name="name" class="form-control" id="name" placeholder="Name" />
                     <label for="name">Name</label>
