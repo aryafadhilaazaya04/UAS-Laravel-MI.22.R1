@@ -29,7 +29,8 @@
                         <li><a class="dropdown-item" href="dashboard"><i class="bi bi-speedometer2"></i> My Dashboard</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <form action="">
+                            <form action="/logout" method="POST">
+                                @csrf
                                 <button class="dropdown-item" type="submit"><i class="bi bi-box-arrow-right"></i> Logout</button>
                             </form>
                         </li>
