@@ -12,6 +12,9 @@
         crossorigin="anonymous">
     <!-- Custom style -->
     <link href="/css/dashboard.css" rel="stylesheet" />
+    <!-- Trix -->
+    <link rel="stylesheet" type="text/css" href="/css/trix.css">
+    <script type="text/javascript" src="/js/trix.js"></script>
 </head>
 
 <body>
