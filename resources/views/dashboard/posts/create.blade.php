@@ -69,6 +69,10 @@
         slugTimeout = setTimeout(updateSlug, 300);
     });
     title.addEventListener('blur', updateSlug);
+
+    document.addEventListener('trix-file-accept', function(e) {
+        e.preventDefault();
+    });
 </script>
 
 @endsection
