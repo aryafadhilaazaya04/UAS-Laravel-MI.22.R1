@@ -5,7 +5,7 @@
     <h1 class="h2">Edit Post</h1>
 </div>
 <div class="col-lg-8">
-    <form method="POST" action="/dashboard/posts/{{ $post->slug }}">
+    <form method="POST" action="/dashboard/posts/{{ $post->slug }}" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="mb-3">
@@ -38,6 +38,10 @@
                 @endif
                 @endforeach
             </select>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Post Image</label>
+            <input class="form-control" type="file" id="image" name="image">
         </div>
         <div class="mb-3">
             <label for="body" class="form-label">Body</label>
