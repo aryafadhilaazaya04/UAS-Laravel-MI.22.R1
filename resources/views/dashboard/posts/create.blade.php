@@ -18,7 +18,12 @@
         </div>
         <div class="mb-3">
             <label for="slug" class="form-label">Slug</label>
-            <input type="text" class="form-control" id="slug" name="slug" disabled readonly>
+            <input type="text" class="form-control @error('slug')is-invalid @enderror" id="slug" name="slug" readonly>
+            @error('slug')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
             <div id="slug-feedback" class="form-text text-danger d-none">Gagal mengambil slug. Cek login atau koneksi.</div>
         </div>
         <div class="mb-3">
