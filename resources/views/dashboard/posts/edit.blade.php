@@ -43,6 +43,7 @@
             <label for="image" class="form-label">Post Image</label><small class="text-muted"> (Max Size 2MB)</small>
             <input class="form-control mb-1 @error('image')is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
             <small class="text-muted" id="preview-label" @if($post->image) style="display:inline;" @else style="display:none;" @endif>Preview Image</small>
+            <input type="hidden" name="oldImage" value="{{ $post->image }}">
             @if ($post->image)
             <img src="{{ asset('storage/' . $post->image) }}" id="image-preview" class="image-preview img-fluid mt-2 col-sm-3" style="max-height: 300px; object-fit: cover; display:block;">
             @else
