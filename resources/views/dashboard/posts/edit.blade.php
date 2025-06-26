@@ -18,7 +18,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="slug" class="form-label">Slug</label><small class="text-muted"> (auto-generated)</small>
+            <label for="slug" class="form-label">Slug</label><small class="text-muted"> (Auto-Generated)</small>
             <input type="text" class="form-control @error('slug')is-invalid @enderror" id="slug" name="slug" readonly>
             @error('slug')
             <div class="invalid-feedback">
@@ -40,8 +40,10 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Post Image</label>
-            <input class="form-control @error('image')is-invalid @enderror" type="file" id="image" name="image">
+            <label for="image" class="form-label">Post Image</label><small class="text-muted"> (Max Size 2MB)</small>
+            <input class="form-control mb-1 @error('image')is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
+            <small class="text-muted" id="preview-label" style="display:none;">Preview Image</small>
+            <img id="image-preview" class="image-preview img-fluid mt-2 col-sm-3" style="max-height: 300px; object-fit: cover; display:none;">
             @error('image')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -100,6 +102,30 @@
     document.addEventListener('trix-file-accept', function(e) {
         e.preventDefault();
     });
+
+    function previewImage() {
+        const image = document.querySelector('#image');
+        const imagePreview = document.querySelector('#image-preview');
+        const previewLabel = document.getElementById('preview-label');
+        if (image.files && image.files[0]) {
+            const file = image.files[0];
+            if (!file.type.startsWith('image/')) {
+                imagePreview.style.display = 'none';
+                previewLabel.style.display = 'none';
+                return;
+            }
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(file);
+            oFReader.onload = function(oFREvent) {
+                imagePreview.src = oFREvent.target.result;
+                imagePreview.style.display = 'block';
+                previewLabel.style.display = 'inline';
+            };
+        } else {
+            imagePreview.style.display = 'none';
+            previewLabel.style.display = 'none';
+        }
+    }
 </script>
 
 @endsection
