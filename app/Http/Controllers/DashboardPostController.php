@@ -94,7 +94,8 @@ class DashboardPostController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'category_id' => 'required|exists:categories,id',
-            'body' => 'required',
+            'image' => 'image|file|max:2048',
+            'body' => 'required'
         ];
 
         if ($request->slug != $post->slug) {
@@ -102,6 +103,10 @@ class DashboardPostController extends Controller
         }
 
         $validated = $request->validate($rules);
+
+        if ($request->file('image')) {
+            $validated['image'] = $request->file('image')->store('post-images');
+        }
 
         $validated['user_id'] = $user->id;
         $validated['author'] = $user->name;
