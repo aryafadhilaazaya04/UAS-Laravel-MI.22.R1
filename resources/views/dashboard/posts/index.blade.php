@@ -31,10 +31,10 @@
                 <td>
                     <a href="/dashboard/posts/{{ $post->slug }}" class="btn btn-info btn-sm mb-1 mb-md-0"><i class="bi bi-eye"></i></a>
                     <a href="#" class="btn btn-warning btn-sm mb-1 mb-md-0"><i class="bi bi-pencil-square"></i></a>
-                    <form action="#" method="POST" class="d-inline">
+                    <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')"><i class="bi bi-trash"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this post?')"><i class="bi bi-trash"></i></button>
                     </form>
                 </td>
             </tr>
