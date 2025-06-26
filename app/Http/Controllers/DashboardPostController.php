@@ -46,9 +46,13 @@ class DashboardPostController extends Controller
             'title' => 'required|max:255',
             'slug' => 'required|unique:posts,slug',
             'category_id' => 'required|exists:categories,id',
-            'body' => 'required',
+            'image' => 'image|file|max:1024',
+            'body' => 'required'
         ]);
 
+        if ($request->file('image')) {
+            $validated['image'] = $request->file('image')->store('post-images');
+        }
         $validated['user_id'] = $user->id;
         $validated['author'] = $user->name;
         $validated['excerpt'] = str()->limit(strip_tags($validated['body']), 200);
