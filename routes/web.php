@@ -34,21 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dashboard/posts', DashboardPostController::class);
 });
 
-// Custom admin-only route protection for categories
-Route::middleware(['auth'])->group(function () {
+// Admin-only route protection for categories
+Route::middleware(['auth', 'can:admin-only'])->group(function () {
     Route::resource('/dashboard/categories', AdminCategoryController::class)
         ->except('show');
-});
-
-// Middleware closure for admin only (fix for closure error)
-use Illuminate\Support\Facades\Auth;
-Route::middleware(['auth'])->group(function () {
-    Route::match(['get', 'post', 'put', 'patch', 'delete'], '/dashboard/categories/{any?}', function($any = null) {
-        if (!Auth::check() || !Auth::user()->is_admin) {
-            abort(403, 'Unauthorized action.');
-        }
-        return redirect()->route('categories.index');
-    })->where('any', '.*');
 });
 
 Route::get('/about', function () {
