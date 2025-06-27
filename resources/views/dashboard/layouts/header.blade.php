@@ -7,12 +7,11 @@
     <ul class="navbar-nav flex-row d-md-none ms-auto">
         <li class="nav-item text-nowrap">
             <button
-                class="nav-link px-3 text-white"
+                class="nav-link px-3 text-white hamburger-btn"
                 type="button"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#sidebarMenu"
                 aria-controls="sidebarMenu"
-                aria-expanded="false"
                 aria-label="Toggle navigation">
                 <i class="bi bi-list fs-3"></i>
             </button>
