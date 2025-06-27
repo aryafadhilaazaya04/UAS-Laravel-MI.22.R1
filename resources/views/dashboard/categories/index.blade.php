@@ -8,7 +8,7 @@
 <div class="table-responsive col-lg-8">
     <a href="/dashboard/categories/create" class="btn btn-outline-primary mb-3">Create new category</a>
     @if (session()->has('success'))
-    <div class="alert alert-success alert-dismissible fade show col-lg-8" role="alert">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -18,6 +18,7 @@
             <tr>
                 <th scope="col">No</th>
                 <th scope="col">Categories</th>
+                <th scope="col">Slugs</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -26,10 +27,10 @@
             <tr style="white-space: nowrap;">
                 <td>{{ $loop->iteration }}</td>
                 <td class="text-break">{{ $category->name }}</td>
+                <td class="text-break">{{ $category->slug }}</td>
                 <td>
-                    <a href="/dashboard/categories/{{ $category->slug }}" class="btn btn-info btn-sm mb-1 mb-md-0"><i class="bi bi-eye"></i></a>
-                    <a href="/dashboard/categories/{{ $category->slug }}/edit" class="btn btn-warning btn-sm mb-1 mb-md-0"><i class="bi bi-pencil-square"></i></a>
-                    <form action="/dashboard/categories/{{ $category->slug }}" method="POST" class="d-inline">
+                    <a href="/dashboard/categories/{{ $category->id }}/edit" class="btn btn-warning btn-sm mb-1 mb-md-0"><i class="bi bi-pencil-square"></i></a>
+                    <form action="/dashboard/categories/{{ $category->id }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this category?')"><i class="bi bi-trash"></i></button>

@@ -2,15 +2,16 @@
 @section('content')
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h1 class="h2">Create New Post</h1>
+    <h1 class="h2">Edit Category</h1>
 </div>
 <div class="col-lg-8">
-    <form method="POST" action="/dashboard/posts" enctype="multipart/form-data">
+    <form method="POST" action="/dashboard/categories/{{ $category->id }}" enctype="multipart/form-data">
+        @method('PUT')
         @csrf
         <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control @error('title')is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required autofocus>
-            @error('title')
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control @error('name')is-invalid @enderror" id="name" name="name" value="{{ old('name', $category->name) }}" required autofocus>
+            @error('name')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
@@ -26,43 +27,12 @@
             @enderror
             <div id="slug-feedback" class="form-text text-danger d-none">Gagal mengambil slug. Cek login atau koneksi.</div>
         </div>
-        <div class="mb-3">
-            <label for="category" class="form-label">Category</label>
-            <select class="form-select" id="category" name="category_id">
-                @foreach ($categories as $category)
-                @if (old('category_id') == $category->id)
-                <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                @else
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endif
-                @endforeach
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="image" class="form-label">Post Image</label><small class="text-muted"> (Max Size 2MB)</small>
-            <input class="form-control mb-1 @error('image')is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
-            <small class="text-muted" id="preview-label" style="display:none;">Preview Image</small>
-            <img id="image-preview" class="image-preview img-fluid mt-2 col-sm-3" style="max-height: 300px; object-fit: cover; display:none;">
-            @error('image')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="body" class="form-label">Body</label>
-            <input id="body" type="hidden" name="body" value="{{ old('body') }}">
-            <trix-editor input="body"></trix-editor>
-            @error('body')
-            <p class="text-danger" style="font-size: 14px;">{{ $message }}</p>
-            @enderror
-        </div>
-        <button type="submit" class="btn btn-outline-primary">Create Post</button>
+        <button type="submit" class="btn btn-outline-primary">Update Category</button>
     </form>
 </div>
 
 <script>
-    const title = document.querySelector('#title');
+    const title = document.querySelector('#name');
     const slug = document.querySelector('#slug');
     const slugFeedback = document.getElementById('slug-feedback');
     let slugTimeout;
