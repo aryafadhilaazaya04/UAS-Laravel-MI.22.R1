@@ -17,23 +17,39 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
-
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/dashboard', function() {
-    return view('dashboard.index', [
-        'title' => 'Dashboard',
-        'active' => 'dashboard'
-    ]);
-})->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function() {
+        return view('dashboard.index', [
+            'title' => 'Dashboard',
+            'active' => 'dashboard'
+        ]);
+    });
 
-Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
-Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+    Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug']);
+    Route::resource('/dashboard/posts', DashboardPostController::class);
+});
 
-Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
+// Custom admin-only route protection for categories
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/dashboard/categories', AdminCategoryController::class)
+        ->except('show');
+});
+
+// Middleware closure for admin only (fix for closure error)
+use Illuminate\Support\Facades\Auth;
+Route::middleware(['auth'])->group(function () {
+    Route::match(['get', 'post', 'put', 'patch', 'delete'], '/dashboard/categories/{any?}', function($any = null) {
+        if (!Auth::check() || !Auth::user()->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
+        return redirect()->route('categories.index');
+    })->where('any', '.*');
+});
 
 Route::get('/about', function () {
     return view('about', [
@@ -46,8 +62,6 @@ Route::get('/about', function () {
 });
 
 Route::get('/posts', [PostController::class, 'index']);
-
-// Halaman untuk single post
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/categories', function () {
