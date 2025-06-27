@@ -24,14 +24,7 @@
                 <td class="text-break">{{ $post->author }}</td>
                 <td class="text-break">{{ $post->category->name }}</td>
                 <td>
-                    <a href="/dashboard/{{ $post->slug }}" class="btn btn-info btn-sm mb-1 mb-md-0"><i class="bi bi-eye"></i></a>
-                    @can('admin-only')
-                    <form action="/dashboard/{{ $post->slug }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this post?')"><i class="bi bi-trash"></i></button>
-                    </form>
-                    @endcan
+                    <a href="/dashboard/show/{{ $post->slug }}" class="btn btn-info btn-sm d-block mb-1 mb-md-0"><i class="bi bi-eye"></i></a>
                 </td>
             </tr>
             @endforeach

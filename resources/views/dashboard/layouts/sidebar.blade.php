@@ -7,7 +7,7 @@
         <div class="d-flex flex-column flex-shrink-0 p-3">
             <ul class="nav mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex gap-2 {{ Request::is('dashboard') ? 'active' : 'text-black' }}" href="/dashboard">
+                    <a class="nav-link d-flex gap-2 {{ Request::is('dashboard') || Request::is('dashboard/show*') ? 'active' : 'text-black' }}" href="/dashboard">
                         <i class="bi bi-house-fill"></i> Dashboard
                     </a>
                 </li>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -28,6 +29,13 @@ Route::middleware('auth')->group(function () {
             'title' => 'Dashboard',
             'active' => 'dashboard',
             'posts' => \App\Models\Post::all()
+        ]);
+    });
+    Route::get('/dashboard/show/{post:slug}', function(Post $post) {
+        return view('dashboard.show', [
+            'title' => 'Post Details',
+            'active' => 'dashboard',
+            'post' => $post
         ]);
     });
 

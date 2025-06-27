@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Arya Fadhila Azaya',
             'username' => 'aryafadhilaazaya',
             'email' => 'arya@gmail.com',
+            'email_verified_at' => now(),
             'password' => bcrypt('12345'),
             'is_admin' => 1
         ]);
