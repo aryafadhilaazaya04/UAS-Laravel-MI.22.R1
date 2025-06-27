@@ -26,7 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function() {
         return view('dashboard.index', [
             'title' => 'Dashboard',
-            'active' => 'dashboard'
+            'active' => 'dashboard',
+            'posts' => \App\Models\Post::all()
         ]);
     });
 
