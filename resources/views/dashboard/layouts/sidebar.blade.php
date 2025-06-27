@@ -13,7 +13,17 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex gap-2 {{ Request::is('dashboard/posts*') ? 'active' : 'text-black' }}" href="/dashboard/posts">
-                        <i class="bi bi-file-text"></i> My Post
+                        <i class="bi bi-file-text-fill"></i> My Post
+                    </a>
+                </li>
+            </ul>
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span>ADMINISTRATOR</span>
+            </h6>
+            <ul class="nav mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex gap-2 {{ Request::is('dashboard/categories*') ? 'active' : 'text-black' }}" href="/dashboard/categories">
+                        <i class="bi bi-grid-fill"></i> Post Categories
                     </a>
                 </li>
             </ul>
@@ -23,7 +33,7 @@
                     <form action="/logout" method="POST">
                         @csrf
                         <button class="nav-link d-flex gap-2 text-danger bg-transparent border-0" type="submit">
-                            <i class="bi bi-box-arrow-right"></i> Logout
+                            <i class="bi bi-door-closed-fill"></i> Logout
                         </button>
                     </form>
                 </li>
