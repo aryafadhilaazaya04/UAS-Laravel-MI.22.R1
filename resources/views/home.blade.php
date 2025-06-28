@@ -1,6 +1,8 @@
 @extends('layouts.main')
 @section('content')
 
-<h1>Halaman Home</h1>
+<div class="marquee">
+    <h1>Welcome to the Home Page</h1>
+</div>
 
 @endsection
